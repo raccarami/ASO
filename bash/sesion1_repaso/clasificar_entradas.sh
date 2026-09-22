@@ -1,13 +1,13 @@
-for entrada in ./*; 
+for entrada in /home/CLASE/aso/bash/*; 
 do
 
 nombre=$(basename "$entrada")
 
-if [ -f $entrada ];
+if [[ -f $entrada ]];
 	then
 echo "$nombre : fichero"
 
-elif [ -d $entrada ];
+elif [[ -d $entrada ]];
 	then
 echo "$nombre : directorio"
 
