@@ -9,4 +9,5 @@ if [ ! -f "$1" ]; then
     exit 1
 fi
 
-sed 's/@[^[:space:]]*/alu.edu.gva.es/g' $1
+sed 's/@[^[:space:]]*/@alu.edu.gva.es/g' $1
+
