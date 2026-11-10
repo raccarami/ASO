@@ -1,0 +1,11 @@
+
+
+if [ -z $1 ]; then
+	echo "Uso correcto: $0 <shell>"
+	echo "Ejemplo: $0 /bin/bash"
+	exit 1
+fi
+
+shell=$1
+
+grep ":${shell}$" /etc/passwd | cut -d: -f1

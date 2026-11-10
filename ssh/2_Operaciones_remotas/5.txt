@@ -1,0 +1,4 @@
+1- Orientado a sesión
+2- No orientado a Sesión
+3- No orientado a Sesión, se ejecuta el 'ls -l' en el servidor y el wc -l en el equipo local.
+4- No orientado a Sesión
