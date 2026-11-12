@@ -1,33 +1,43 @@
 #!/bin/bash
 
-BACKUP_ROOT="$HOME/backups"
-LOG_FILE="$BACKUP_ROOT/backup.log"
-DEST_DIR="$BACKUP_ROOT/espejo"
+fecha=$(date +%F_%H-%M)
+dir="$HOME/clase/aso/ASO/ssh/3_script_copia_seguridad/backups"
+dir_espejo="$dir/espejo"
+#                  ===================
 
-mostrar_uso() {
-    echo "Uso: $0 alias_servidor:ruta_remota"
-    exit 1
-}
+dir_log="$dir/logs"
+mkdir -p "$dir_log"
+archivo_log="$dir_log/backup$fecha.log"
 
-[ -z "$1" ] && mostrar_uso
-REMOTE_TARGET="$1"
 
-mkdir -p "$DEST_DIR"
+exec > >(tee -a "$archivo_log") 2>&1
 
-SERVIDOR="${REMOTE_TARGET%%:*}"
-RUTA_REMOTA="${REMOTE_TARGET#*:}"
 
-[ "$SERVIDOR" = "$REMOTE_TARGET" ] || [ -z "$SERVIDOR" ] || [ -z "$RUTA_REMOTA" ] && mostrar_uso
-
-# Comprobar la conexión con el servidor usando el alias configurado (sin pedir contraseña)
-if ! ssh -o BatchMode=yes -o ConnectTimeout=5 "$SERVIDOR" true &>/dev/null; then
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $REMOTE_TARGET - mal" >> "$LOG_FILE"
-    exit 1
+if [ $# -lt 1 ]; then
+	echo "USO: backup_scp.sh <ruta servidor>"
+	exit 1
 fi
 
-if rsync -av "${REMOTE_TARGET}/" "$DEST_DIR/" &>/dev/null; then
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $REMOTE_TARGET - bien" >> "$LOG_FILE"
+
+
+ssh -o BatchMode=yes servidor true &> /dev/null
+
+
+if [ $? -ne 0 ]; then
+	echo "Servidor no disponible."
+	exit 1
 else
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $REMOTE_TARGET - mal" >> "$LOG_FILE"
-    exit 1
+
+	mkdir -p "$dir_espejo"
+
+	rsync -av $1 $dir_espejo
+
+	if [ $? -eq 0 ]; then
+                echo "Copia realizada con éxito en: $dir_backup"
+        else
+                echo "Error durante la transferencia."
+        fi
 fi
+
+
+

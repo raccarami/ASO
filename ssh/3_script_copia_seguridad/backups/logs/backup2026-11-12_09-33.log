@@ -1,0 +1,15 @@
+receiving incremental file list
+factura_1.txt
+factura_2.txt
+factura_3.txt
+factura_4.txt
+factura_5.txt
+
+sent 119 bytes  received 403 bytes  1.044,00 bytes/sec
+total size is 50  speedup is 0,10
+Copia realizada con éxito en: /home/ramrac/clase/aso/ASO/ssh/3_script_copia_seguridad/backups/espejo/backup2026-11-12_09-33
+receiving incremental file list
+
+sent 20 bytes  received 134 bytes  308,00 bytes/sec
+total size is 50  speedup is 0,32
+Copia realizada con éxito en: /home/ramrac/clase/aso/ASO/ssh/3_script_copia_seguridad/backups/espejo/backup2026-11-12_09-33

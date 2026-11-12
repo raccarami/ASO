@@ -1,0 +1,15 @@
+receiving incremental file list
+factura_2.txt
+factura_3.txt
+factura_4.txt
+factura_5.txt
+factura_x.txt
+
+sent 119 bytes  received 403 bytes  348,00 bytes/sec
+total size is 50  speedup is 0,10
+Copia realizada con éxito en: 
+receiving incremental file list
+
+sent 20 bytes  received 134 bytes  308,00 bytes/sec
+total size is 50  speedup is 0,32
+Copia realizada con éxito en: 
